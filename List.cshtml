@@ -4,9 +4,12 @@
     ViewData["Title"] = "Admin";
 }
 
-<h2 class="text-center p-3 border-bottom border-success">All Events</h2>
+<h2 class="text-center pt-3 pb-0 border-bottom border-success mb-0">All Events</h2>
 
-@* <a class="btn btn-primary btn-sm mb-2 text-center" asp-page="../Events/Create">Create Events</a> *@
+<a class="btn btn-success btn-sm mb-2 text-center mt-0 py-2"
+    asp-page="../Events/Create">
+    <i class="fa fa-plus" aria-hidden="true"></i> Create New Events
+</a>
 <div class="container-fluid">
     <div class="d-flex flex-row flex-wrap justify-content-center">
         @foreach (var item in Model.Polls)
