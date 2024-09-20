@@ -1,0 +1,77 @@
+﻿@page
+@model MyApp.Namespace.ListModel
+@{
+    ViewData["Title"] = "Admin";
+}
+
+<h2 class="text-center p-3 border-bottom border-success">All Events</h2>
+
+@* <a class="btn btn-primary btn-sm mb-2 text-center" asp-page="../Events/Create">Create Events</a> *@
+<div class="container-fluid">
+    <div class="d-flex flex-row flex-wrap justify-content-center">
+        @foreach (var item in Model.Polls)
+        {
+            var pollGuid = item.PollGuid.ToString("N");
+
+            <div class="card pt-3 px-3 m-4">
+                <img class="card-img-top" src="~/placeholder.jfif" alt="decorated image">
+                <div class="card-body">
+                    <h5 class="card-title">@Html.DisplayFor(modelItem => item.Title)</h5>
+
+                    <ul class="list-group mb-4">
+                        @* <li class="list-group-item">@Html.DisplayFor(modelItem => item.Location)</li> *@
+                        <li class="list-group-item">@Html.DisplayFor(modelItem => item.Location)</li>
+                        <li class="list-group-item">@Html.DisplayFor(modelItem => item.CloseDate)</li>
+                    </ul>
+
+                    <a class="btn btn-secondary btn-sm ms-1 mb-1 p-2"
+                        asp-page="/Events/Index" asp-route-id="@item.Id">
+                        <i class="fa fa-question-circle" aria-hidden="true"></i>
+                        View
+                    </a>
+                    <a class="btn btn-secondary btn-sm ms-1 mb-1 p-2"
+                        asp-page="/Events/Join"
+                        asp-route-guid="@pollGuid">
+                        <i class="fa fa-envelope-open mr-1" aria-hidden="true"></i>  
+                        Book Over
+                    </a>
+                </div>
+            </div>
+        }
+    </div>
+    @* <div class="table-responsive">
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Location</th>
+                    <th scope="col">Closed Date</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Polls)
+                {
+                    var pollGuid = item.PollGuid.ToString("N");
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Id)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Title)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Location)
+                        </td>
+                        <td>@Html.DisplayFor(modelItem => item.CloseDate)</td>
+                        <td>
+                            <a class="btn btn-secondary btn-sm ms-1 mb-1" asp-page="/Events/Index" asp-route-id="@item.Id">View</a>
+                            <a class="btn btn-secondary btn-sm ms-1 mb-1" asp-page="/Events/Join" asp-route-guid="@pollGuid">Book Over</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div> *@
+</div>
